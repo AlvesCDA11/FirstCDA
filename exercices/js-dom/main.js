@@ -4,16 +4,32 @@ let spaceForResult = document.querySelector('.result')
 let form = document.querySelector('form')
 
 let list = document.createElement("ol")
-let listElement = document.createElement("li")
 
 
-list.appendChild(listElement)
+btn.addEventListener('click', (e) => {
+    e.preventDefault()
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault
-})
+    if (input.value === "") {
+        window.alert('le champ est obligatoire')
+        return
+    }
+    
+    let listElement = document.createElement("li")
 
-btn.addEventListener('click', () => {
-    listElement.textContent = input.value
+    listElement.textContent += input.value
+
+    let btnDelete = document.createElement("button")
+    btnDelete.textContent = 'Supprimer'
+    btnDelete.className = 'btnDelete'
+
+    btnDelete.addEventListener('click', ()=> {
+        list.removeChild(listElement)
+        list.removeChild(btnDelete)
+    })
+
+    list.appendChild(listElement)
+    list.appendChild(btnDelete)
     spaceForResult.appendChild(list)
+
+    input.value = ""
 })

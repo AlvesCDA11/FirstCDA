@@ -37,3 +37,12 @@ form {
     border: none;
     padding: 10px;
 }
+.btnDelete {
+    width: 100px;
+    background: rgb(255, 39, 39);
+    color: white;
+    text-transform: uppercase;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+}
