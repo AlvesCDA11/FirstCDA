@@ -1,0 +1,56 @@
+*{
+    box-sizing: border-box;
+}
+header {
+    background: #2c3e50;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header h1 {
+    color: white;
+}
+header nav {
+    display: flex;
+    gap: 20px;
+}
+header nav a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+}
+
+main {
+    max-width: 800px;
+    margin: auto;
+    padding: 40px 20px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.grid div {
+    width: 100px;
+    height: 100px;
+    background: red;
+    display: block;
+}
+
+footer {
+    width: 100%;
+    background: #ecf0f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
