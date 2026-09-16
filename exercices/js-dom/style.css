@@ -1,0 +1,39 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.result {
+    width: 500px;
+    height: 500px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.champ {
+    width: 300px;
+    border-radius: 20px;
+    background: rgb(230, 230, 230);
+    border: none;
+    padding: 15px;
+}
+.btn {
+    width: 150px;
+    background: #6320ee;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+}
