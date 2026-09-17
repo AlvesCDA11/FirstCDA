@@ -26,7 +26,7 @@ function isPalindrome(text) {
     }
 }
 
-// isPalindrome("A man a plan a canal Panama")
+// isPalindrome("kayak")
 
 function strAnagramms(textOne, textTwo) {
     let strOne = textOne.split("").sort().join()
