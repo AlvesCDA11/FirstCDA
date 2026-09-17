@@ -11,6 +11,10 @@ body {
     flex-direction: column;
     gap: 10px;
 }
+.title{
+    text-transform: uppercase;
+    color: #6320ee;
+}
 .result {
     width: 500px;
     height: 500px;
@@ -24,10 +28,23 @@ body {
     flex-direction: column;
     gap: 10px;
 }
-.listElement {
+.capsule {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+.spanCap {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.listElement {
+    font-weight: bolder;
+    font-size: 20px;
+}
+.capsule:has(input:checked) .listElement {
+    text-decoration: line-through;
 }
 form {
     display: flex;

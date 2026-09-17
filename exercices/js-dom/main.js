@@ -1,10 +1,12 @@
 let input = document.querySelector('.champ')
 let btn = document.querySelector('.btn')
 let spaceForResult = document.querySelector('.result')
-let form = document.querySelector('form')
 
-let list = document.createElement("ol")
-list.className = 'boxList'
+let boxList = document.createElement("ul")
+boxList.className = 'boxList'
+
+let textCount = document.querySelector('.textCount')
+count = 1
 
 
 btn.addEventListener('click', (e) => {
@@ -14,6 +16,15 @@ btn.addEventListener('click', (e) => {
         window.alert('le champ est obligatoire')
         return
     }
+
+    let div = document.createElement('div')
+    div.className = "capsule"
+
+    let span = document.createElement('span')
+    span.className = 'spanCap'
+
+    let check = document.createElement('input')
+    check.type = 'checkbox'
     
     let listElement = document.createElement("li")
     listElement.className ="listElement"
@@ -25,12 +36,17 @@ btn.addEventListener('click', (e) => {
     btnDelete.className = 'btnDelete'
 
     btnDelete.addEventListener('click', ()=> {
-        list.removeChild(listElement)
+        boxList.removeChild(div)
     })
 
-    list.appendChild(listElement)
-    listElement.appendChild(btnDelete)
-    spaceForResult.appendChild(list)
+    boxList.appendChild(div)
+    div.appendChild(span)
+    span.appendChild(check)
+    span.appendChild(listElement)
+    div.appendChild(btnDelete)
+    spaceForResult.appendChild(boxList)
 
     input.value = ""
+
+    textCount.textContent = 'Total: ' + document.querySelectorAll('li').length
 })
