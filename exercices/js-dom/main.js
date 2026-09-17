@@ -4,6 +4,7 @@ let spaceForResult = document.querySelector('.result')
 let form = document.querySelector('form')
 
 let list = document.createElement("ol")
+list.className = 'boxList'
 
 
 btn.addEventListener('click', (e) => {
@@ -15,6 +16,7 @@ btn.addEventListener('click', (e) => {
     }
     
     let listElement = document.createElement("li")
+    listElement.className ="listElement"
 
     listElement.textContent += input.value
 
@@ -24,11 +26,10 @@ btn.addEventListener('click', (e) => {
 
     btnDelete.addEventListener('click', ()=> {
         list.removeChild(listElement)
-        list.removeChild(btnDelete)
     })
 
     list.appendChild(listElement)
-    list.appendChild(btnDelete)
+    listElement.appendChild(btnDelete)
     spaceForResult.appendChild(list)
 
     input.value = ""
