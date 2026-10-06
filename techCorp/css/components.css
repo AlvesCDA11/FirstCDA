@@ -1,17 +1,49 @@
-/* ==========================================================================
-   components.css - Composants reutilisables, nommes en BEM
-     .bloc  /  .bloc__element  /  .bloc--modificateur
+.container {
+   display: flex;
+   gap: 10px;
+   padding: 10px;
+}
+.container div {
+   width: 200px;
+   height: 100px;
+}
+.box--primary { background: var(--color-primary); }
+.box--secondary { background: var(--color-secondary); }
+.box--focus { background: var(--color-focus); }
 
-   Jour 1 : .btn, .badge, .card, .alert
-   Jour 2 : .topbar, .sidebar, .nav, .stat, .avatar, .skip-link
-   Jour 3 : .field, .input, .select, .textarea, .fieldset, .choice,
-            .table, .filters, .pagination, .timeline, .dialog
-   ========================================================================== */
+.text--xxl{ font-size: var(--text-3xl); font-weight: var(--weight-bold); }
+.text--xl{ font-size: var(--text-2xl); font-weight: var(--weight-semibold); }
+.text--lg{ font-size: var(--text-lg); font-weight: var(--weight-medium); }
+.text--base{ font-size: var(--text-base); font-weight: var(--weight-normal); }
 
-/* 1. Boutons */
+.boxSpace { display: flex; flex-direction: column; gap: 10px;}
+.space{ background: var(--color-primary);}
+.space--one{ padding: var(--space-2); width: var(--space-1); }
+.space--two{ padding: var(--space-2); width: var(--space-3); }
+.space--three{ padding: var(--space-2); width: var(--space-5); }
+.space--four{ padding: var(--space-2); width: var(--space-7); }
 
-/* 2. Badges de statut */
 
-/* 3. Cartes */
+.boxBtn{ padding: var(--space-2); }
+.btn {
+   border: none;
+   padding: var(--space-2);
+   border-radius: var(--radius);
+   color: var(--color-primary-soft);
+}
+.btn--one{ background: var(--color-focus); }
+.btn--two{ background: var(--color-primary); }
+.btn--two:hover { background: var(--color-focus); }
 
-/* 4. Alertes */
+.boxState {
+   display: flex;
+   gap: 10px;
+   padding: var(--space-1);
+}
+.state {
+   padding: var(--space-2);
+   border-radius: var(--radius);
+}
+.state--success{ background: var(--color-success-soft); border: 1px var(--color-success) solid;}
+.state--warning{ background: var(--color-warning-soft); border: 1px var(--color-warning) solid;}
+.state--danger{ background: var(--color-danger-soft); border: 1px var(--color-danger) solid;}

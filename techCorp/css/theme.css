@@ -13,13 +13,13 @@
    "vert foret" ci-dessous, a decommenter pour tester.
    ========================================================================== */
 
-/*
-:root {
-  --color-primary: #166534;
-  --color-primary-hover: #14532d;
-  --color-primary-soft: #f0fdf4;
-  --color-focus: #15803d;
-  --font-sans: "Inter", system-ui, sans-serif;
-  --radius: 4px;
-}
 */
+:root {
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-primary-soft: var(--color-primary-soft);
+  --color-focus: var(--color-focus);
+  --font-sans: var( --font-sans);
+  --radius: var(--radius-sm);
+}
+
