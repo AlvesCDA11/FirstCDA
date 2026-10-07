@@ -8,3 +8,31 @@
    - .grid-auto : grille de cartes responsive sans media query
    Rappel : mobile-first, breakpoints 40em et 64em.
    ========================================================================== */
+
+.container--principal--login {
+   display: flex;
+}
+.box--info--login {
+   width: 50%;
+   height: 100vh;
+   background: var(--color-primary);
+   padding: var(--space-4);
+}
+.container--principal--login form {
+   flex: 1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   gap: 20px;
+}
+
+@media screen and (max-width: 800px) {
+   .box--info--login{
+      display: none;
+   }
+   .container--principal--login form {
+      width: 100%;
+      height: 100vh;
+   }
+}
