@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <title>Dashboard</title>
+</head>
+<style>
+.app {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "sidebar main";
+    grid-template-columns: 240px minmax(0, 1fr);
+    grid-template-rows: var(--header-height) 1fr;
+}
+
+.topbar__menu {
+  display: none;
+}
+
+.user{
+  display: flex;
+  gap: 10px;
+}
+.avatar {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-full);
+  background: var(--color-info-soft);
+  padding: var(--space-4);
+}
+.user__role {
+  font-size: var(--text-xs);
+}
+
+.app__header {
+    grid-area: header;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--gray-O);
+    /* border-bottom: 1px solid #e5e7eb; */
+    padding: var(--space-5);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--blue-900);
+  gap: 10px;
+}
+.skip-link {
+  display: none;
+}
+
+.app__sidebar {
+    grid-area: sidebar;
+    position: sticky;
+    top: var(--header-height);
+    width: auto;
+    height: calc(100vh - var(--header-height));
+    overflow-y: auto;
+    transform: none;
+    visibility: visible;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.app__main {
+    grid-area: main;
+    min-width: 0;
+    padding: var(--space-5);
+    background: var(--gray-O);
+}
+
+.icon--link {
+  width: 30px;
+}
+
+.box--top-principal {
+  width: 100%;
+  height: 200px;
+  background: var(--color-info-soft);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.img--principal {
+  width: 300px;
+}
+.box--wel-info {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.box--cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+}
+.card--stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 150px;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease;
+}
+.card--stats:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+.card--icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: #f4f6ff;
+    border-radius: 12px;
+    font-size: 20px;
+}
+.card--value {
+    margin-top: 15px;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    color: #171717;
+}
+.card--label {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #777777;
+}
+
+.dashboard--bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.dashboard--box {
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #eeeeee;
+    border-radius: 18px;
+}
+
+.box--header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.box--header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.box--header span {
+    font-size: 13px;
+    color: #777;
+    cursor: pointer;
+}
+
+.request--item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.request--item:last-child {
+    border-bottom: none;
+}
+
+.request--icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f6f6f6;
+    border-radius: 11px;
+}
+
+.request--content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.request--content strong {
+    font-size: 14px;
+}
+
+.request--content span {
+    font-size: 12px;
+    color: #888;
+}
+
+.activity--item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 14px 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.activity--item:last-child {
+    border-bottom: none;
+}
+
+.activity--item div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.activity--item strong {
+    font-size: 14px;
+}
+
+.activity--item span {
+    font-size: 13px;
+    color: #777;
+}
+
+.activity--item small {
+    color: #999;
+    font-size: 12px;
+}
+
+
+
+@media (max-width: 768px) {
+
+    .app {
+        grid-template-areas:
+            "header"
+            "main";
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: var(--header-height) 1fr;
+    }
+
+    .topbar__menu {
+        display: flex;
+    }
+
+    .app__sidebar {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        bottom: 0;
+        width: 240px;
+        height: auto;
+        z-index: 30;
+        transform: translateX(-100%);
+        visibility: hidden;
+        transition:
+            transform var(--transition),
+            visibility var(--transition);
+    }
+
+    .app__sidebar.is-open {
+        transform: translateX(0);
+        visibility: visible;
+    }
+    .img--principal {
+      display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .dashboard--bottom {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .box--cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .box--cards {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+  <div class="app">
+    <header class="app__header topbar">
+      <button class="topbar__menu" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="navigation">
+        <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" aria-hidden="true" focusable="false">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <span class="sr-only">Ouvrir le menu</span>
+      </button>
+
+      <a class="brand" href="dashboard-employe.html">
+        <img class="brand__logo" src="assets/logo.svg" alt="" width="32" height="32">
+        TechCorp RH
+      </a>
+
+      <div class="topbar__actions">
+        <div class="user">
+          <span class="avatar" aria-hidden="true">CM</span>
+          <div class="user__info">
+            <p class="user__name">Claire Martin</p>
+            <p class="user__role">Développeuse</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="app__sidebar sidebar" id="navigation" aria-label="Navigation principale">
+        <a class="nav__link active" href="dashboard-employe.html" aria-current="page"><img src="assets/house-simple.svg" class="icon--link" alt="icon"/>Tableau de bord</a>
+        <a class="nav__link" href="conges-demande.html"><img src="assets/calendar-dots.svg" class="icon--link" alt="icon"/>Mes congés</a>
+        <a class="nav__link" href="note-frais-nouvelle.html"><img src="assets/file-doc.svg" class="icon--link" alt="icon"/>Notes de frais</a>
+        <a class="nav__link" href="materiel.html"><img src="assets/cube.svg" class="icon--link" alt="icon"/>Matériel</a>
+    </nav>
+
+    <main class="app__main" id="contenu" tabindex="-1">
+      <div class="box--top-principal">
+        <div class="box--wel-info">
+          <h1>Salut Claire</h1>
+          <p class="text--normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, aspernatur aut! Pariatur minima ipsa quae</p>
+        </div>
+        <img src="assets/undraw_learning-to-sketch_ipnt.svg" class="img--principal" alt="img-principale">
+      </div>
+      <div class="box--cards">
+
+        <div class="card--stats">
+          <span class="card--icon">👥</span>
+          <span class="card--value">124</span>
+          <span class="card--label">Employés</span>
+        </div>
+
+        <div class="card--stats">
+          <span class="card--icon">🏖️</span>
+          <span class="card--value">8</span>
+          <span class="card--label">Congés en attente</span>
+        </div>
+
+        <div class="card--stats">
+          <span class="card--icon">💳</span>
+          <span class="card--value">12</span>
+          <span class="card--label">Notes de frais</span>
+        </div>
+
+      </div>
+      <div class="dashboard--bottom">
+        <div class="dashboard--box">
+            <div class="box--header">
+                <h2>Demandes à traiter</h2>
+                <span>Voir tout</span>
+            </div>
+
+            <div class="request--item">
+                <div class="request--icon">🏖️</div>
+                <div class="request--content">
+                    <strong>Congés</strong>
+                    <span>3 demandes</span>
+                </div>
+            </div>
+
+            <div class="request--item">
+                <div class="request--icon">💳</div>
+                <div class="request--content">
+                    <strong>Notes de frais</strong>
+                    <span>5 demandes</span>
+                </div>
+            </div>
+
+            <div class="request--item">
+                <div class="request--icon">📦</div>
+                <div class="request--content">
+                    <strong>Matériel</strong>
+                    <span>2 demandes</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="dashboard--box">
+            <div class="box--header">
+                <h2>Activité récente</h2>
+                <span>Voir tout</span>
+            </div>
+
+            <div class="activity--item">
+                <div>
+                    <strong>Thomas</strong>
+                    <span>a demandé un congé</span>
+                </div>
+                <small>2h</small>
+            </div>
+
+            <div class="activity--item">
+                <div>
+                    <strong>Sarah</strong>
+                    <span>a envoyé une note de frais</span>
+                </div>
+                <small>4h</small>
+            </div>
+
+            <div class="activity--item">
+                <div>
+                    <strong>Lucas</strong>
+                    <span>a demandé du matériel</span>
+                </div>
+                <small>Hier</small>
+            </div>
+        </div>
+
+    </div>
+    </main>
+  </div>
+</body>
+</html>

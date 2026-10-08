@@ -48,6 +48,22 @@
 .state--warning{ background: var(--color-warning-soft); border: 1px var(--color-warning) solid;}
 .state--danger{ background: var(--color-danger-soft); border: 1px var(--color-danger) solid;}
 
+.text--normal{ text-align: justify; }
+
+.nav__link {
+   width: 100%;
+   text-decoration: none;
+   text-transform: uppercase;
+   color: var(--blue-900);
+   display: flex;
+   align-items: center;
+   gap: var(--space-3);
+   padding: var(--space-2);
+   padding-left: var(--space-4);
+}
+.nav__link.active {
+   border-left: 3px var(--color-primary) solid;
+}
 
 .input--form {
    padding: var(--space-2);
